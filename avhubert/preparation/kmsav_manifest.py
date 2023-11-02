@@ -14,15 +14,17 @@ from gen_subword import gen_vocab
 from tempfile import NamedTemporaryFile
 import argparse
 
+
 def get_split_info(info_file_path):
-    split_info = {"train":[], "test":[], "pretrain":[], "valid":[]}
+    split_info = {"train": [], "test": [], "pretrain": [], "valid": []}
     for line in open(info_file_path, "r"):
         line = line.strip()
-        if line[0] == '#':
+        if line[0] == "#":
             continue
         w = line.split()
         split_info[w[-1]].append(w[0])
     return split_info
+
 
 def main():
     parser = argparse.ArgumentParser(
@@ -123,19 +125,19 @@ def main():
     nfs_audio, nfs_video = [x.strip() for x in open(nframes_audio_file).readlines()], [
         x.strip() for x in open(nframes_video_file).readlines()
     ]
-    #valid_fids = set([x.strip() for x in open(args.valid_ids).readlines()])
+    # valid_fids = set([x.strip() for x in open(args.valid_ids).readlines()])
 
     split_info = get_split_info(args.kmsav_list)
 
     pretrain, train, valid, test = [], [], [], []
     for fid, label, nf_audio, nf_video in zip(fids, labels, nfs_audio, nfs_video):
-        part = fid.split('/')[0]
+        part = fid.split("/")[0]
         # print(part)
-        if part in split_info['test']:
+        if part in split_info["test"]:
             test.append([fid, label, nf_audio, nf_video])
-        elif part in split_info['valid']:
+        elif part in split_info["valid"]:
             valid.append([fid, label, nf_audio, nf_video])
-        elif part in split_info['train']:
+        elif part in split_info["train"]:
             train.append([fid, label, nf_audio, nf_video])
         else:
             pretrain.append([fid, label, nf_audio, nf_video])
@@ -146,5 +148,5 @@ def main():
     return
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

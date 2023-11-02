@@ -9,6 +9,7 @@ import subprocess
 import sys
 import uuid
 
+
 def get_parser():
     parser = argparse.ArgumentParser(
         description="Launch distributed process with appropriate options. ",
@@ -64,6 +65,7 @@ def get_parser():
     )
     parser.add_argument("args", type=str, nargs="+")
     return parser
+
 
 def get_commandline_args():
     extra_chars = [
@@ -130,7 +132,7 @@ def main(cmd=None):
 
     processes = []
     # Submit command via SSH
-    if args.host is not None: 
+    if args.host is not None:
         hosts = []
         ids_list = []
         # e.g. args.host = "host1:0:2,host2:0:1"
@@ -164,15 +166,12 @@ def main(cmd=None):
         logging.info(f"env={env}")
         logging.info(f"hosts={hosts}, ids_list={ids_list}")
         for host, ids in zip(hosts, ids_list):
-            cmd = (
-                args.args
-                + [
-                    f"distributed_training.distributed_init_method=tcp://{hosts[0]}:{args.master_port}",
-                    f"distributed_training.distributed_rank={rank}",
-                    f"distributed_training.distributed_world_size={world_size}",
-                    f"hydra.run.dir={str(rundir)}",
-                ]
-            )
+            cmd = args.args + [
+                f"distributed_training.distributed_init_method=tcp://{hosts[0]}:{args.master_port}",
+                f"distributed_training.distributed_rank={rank}",
+                f"distributed_training.distributed_world_size={world_size}",
+                f"hydra.run.dir={str(rundir)}",
+            ]
 
             heredoc = f"""<< EOF
 set -euo pipefail
@@ -207,14 +206,11 @@ EOF
             f = None
         world_size = args.ngpu
         # Using cmd as it is simply
-        cmd = (
-            args.args
-            + [
-                f"distributed_training.distributed_world_size={world_size}",
-                f"distributed_training.nprocs_per_node={world_size}",
-                f"hydra.run.dir={str(rundir)}",
-            ]
-        )
+        cmd = args.args + [
+            f"distributed_training.distributed_world_size={world_size}",
+            f"distributed_training.nprocs_per_node={world_size}",
+            f"hydra.run.dir={str(rundir)}",
+        ]
         logging.info(" ".join(cmd))
         print(" ".join(cmd), file=f, flush=True)
         process = subprocess.Popen(cmd, stdout=f, stderr=f)

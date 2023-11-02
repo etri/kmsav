@@ -11,19 +11,23 @@ parser = argparse.ArgumentParser(
 )
 parser.add_argument("dir", metavar="result-dir", type=str, help="Whisper result dir")
 parser.add_argument(
-    "--remove-punc", choices=("True", "False"), help="remove puncutation marks",
+    "--remove-punc",
+    choices=("True", "False"),
+    help="remove puncutation marks",
     default="False",
 )
 args = parser.parse_args()
 
 regexps = [
-        (re.compile(r'[.,?"]', re.I|re.M), r''),
-        ]
+    (re.compile(r'[.,?"]', re.I | re.M), r""),
+]
+
 
 def normalize_text(script):
     for reg, rep in regexps:
         script = reg.sub(rep, script)
     return script
+
 
 json_files = glob.glob(os.path.join(args.dir, "*.json"))
 for f in json_files:

@@ -5,10 +5,12 @@ import subprocess
 import sys
 import cv2
 import logging
+
 logging.basicConfig(
     level=logging.INFO,
-    format="%(asctime)s (%(module)s:%(lineno)d) %(levelname)s: %(message)s"
+    format="%(asctime)s (%(module)s:%(lineno)d) %(levelname)s: %(message)s",
 )
+
 
 def init_save_root(args):
     fileid = os.path.splitext(os.path.basename(args.video_path))[0]
@@ -138,7 +140,7 @@ def crop_all_utts(args, frames_dir, utt_dir):
         lines = open(txt_path).readlines()
 
         lineno = 0
-        while lines[lineno][0] == "#" or lines[lineno].strip()=="":
+        while lines[lineno][0] == "#" or lines[lineno].strip() == "":
             w = lines[lineno].split(":")
             if w[0] == "# Script":
                 script = " ".join(w[1].split())
@@ -168,7 +170,9 @@ def crop_all_utts(args, frames_dir, utt_dir):
         crop_path = crop_video(utt_index, crop_regions, flist, utt_dir)
 
         # combine audio
-        audio_path_out = combine_audio(crop_path, audio_path, audio_start_sec, audio_end_sec)
+        audio_path_out = combine_audio(
+            crop_path, audio_path, audio_start_sec, audio_end_sec
+        )
 
         with open(crop_path[:-4] + ".txt", "w") as ofp:
             ofp.write(f"{script}\n")
@@ -183,6 +187,7 @@ def crop_all_utts(args, frames_dir, utt_dir):
         )
 
     return
+
 
 def write_utt_info(args, utt_dir):
     # get vidio and audio name
@@ -250,9 +255,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--end-margin", type=int, help="video end margin(sec)", default=0
     )
-    parser.add_argument(
-        "--dry-run", action="store_true", help="create meta files only"
-    )
+    parser.add_argument("--dry-run", action="store_true", help="create meta files only")
     parser.add_argument("--fps", type=int, help="video fps", default=25)
     parser.add_argument("video_path", type=str, help="video id")
     args = parser.parse_args()
