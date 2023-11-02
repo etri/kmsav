@@ -8,8 +8,8 @@ link would be `https://youtube.com/watch?v=AlLW83LkQ4M` and the tool like
 
 
 ## Download ASR and ASD info files
-Download ASR and ASD info files from this repository, and unzip them. You will
-get `kmsav_asd_v0.2` directory.
+Download [ASD info file](https://github.com/etri/kmsav/releases/download/v0.2.0/kmsav_asd_v0.2.zip)
+from repository, and unzip them. You will get `kmsav_asd_v0.2` directory.
 
 ## Crop utterances from video file
 It's necessary to extract from the entire video, sentence by sentence as spoken
