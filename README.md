@@ -19,10 +19,10 @@ The Multimodal AVSR Dataset includes:
 ### Data Format
 
 Each data entry in the dataset consists of:
-1. Video file (.mp4)
-2. Audio file (.wav)
-3. Metadata for AVSR containing transcription and face region of active speaker
+1. URLs to video files
+2. Metadata for AVSR containing transcription and face region of active speaker
    for each utterance
+3. Set of scripts to extract videos of audio-visual utterances from metadata
 
 ## Usage Guidelines
 
@@ -42,7 +42,11 @@ guidelines](./HOWTO.md#data-prepare) for dataset preprocessing.
 
 ## License
 
-This dataset is licensed under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/) .
+This dataset is licensed under the [Creative Commons
+Attribution-NonCommercial-ShareAlike 4.0 International
+License](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+See [LICENSE](./LICENSE.md) for details.
+
 ## Citation
 
 If you use this dataset in your research, please cite it as follows:
@@ -50,17 +54,23 @@ If you use this dataset in your research, please cite it as follows:
 ```less
 @misc{kmsav,
     title={KMSAV: Korean Multi-speaker Spontaneous Audio-Visual Speech Recognition Dataset},
-    author={},
-    year={2023},
-    howpublished={\url{https://github.com/etri/kmsav}},
+    author={Kiyoung Park, Changhan Oh and Sunghee Dong},
+    year={2024},
+    journal={ETRI Journal},
 }
 ```
 
 
 ## Acknowledgements
 
-We would like to thank all the content creators whose videos were used to create this dataset. Your contributions have made this resource possible.
+This work is supported by Institute for Information \& communications
+Technology Planning \& Evaluation(IITP) grant funded by the Korea
+government(MSIT) (No.2019-0-01376, Development of the multi-speaker
+conversational speech recognition technology)
+
 ## Contact
 
-For any questions or concerns related to this dataset, please reach out to us by opening an issue on this repository or by contacting us at [pkyoung@etri.re.kr](mailto:pkyoung@etri.re.kr) .
+For any questions or concerns related to this dataset, please reach out to us
+by opening an issue on this repository or by contacting us at
+[pkyoung@etri.re.kr](mailto:pkyoung@etri.re.kr) .
 
