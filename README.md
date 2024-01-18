@@ -42,9 +42,10 @@ guidelines](./HOWTO.md#data-prepare) for dataset preprocessing.
 
 ## License
 
-This dataset is licensed under the [Creative Commons
+* This __dataset__ is licensed under the [Creative Commons
 Attribution-NonCommercial-ShareAlike 4.0 International
 License](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+* The __source code__ is licensed under the MIT License.
 See [LICENSE](./LICENSE.md) for details.
 
 ## Citation

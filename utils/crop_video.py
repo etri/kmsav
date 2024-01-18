@@ -88,7 +88,7 @@ def crop_video(utt_index, point_list, flist, outdir):
             ]
 
             vOut.write(cv2.resize(crop_area, (224, 224)))
-    except:
+    except Exception:
         logging.error(f"ERROR while processing {video_path}")
         raise
     vOut.release()
