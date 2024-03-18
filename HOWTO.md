@@ -4,8 +4,10 @@
 At first download video files from youtube.com using file id in
 [data/list.txt](data/list.txt) file. If file id is `AlLW83LkQ4M` then video
 link would be `https://youtube.com/watch?v=AlLW83LkQ4M` and the tool like
-[yt-dlp](https://github.com/yt-dlp/yt-dlp) can be used.
+[yt-dlp](https://github.com/yt-dlp/yt-dlp) can be used. For example,
 
+    yt-dlp --no-simulate -f mp4 -o '/path/to/downloaded/data/%(id)s.%(ext)s' \
+       'https://youtube.com/watch?v=AlLW83LkQ4M'
 
 ## Download ASR and ASD info files
 Download [ASD info file](https://github.com/etri/kmsav/releases/download/v0.2.0/kmsav_asd_v0.2.zip)
