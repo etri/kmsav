@@ -136,7 +136,7 @@ def crop_all_utts(args, frames_dir, utt_dir):
     # crop video based on the data of txt
     for txt_path in txt_list:
         utt_index = os.path.splitext(os.path.split(txt_path)[-1])[0]
-        utt_id = f"{fileid}:{utt_index:06}"
+        utt_id = f"{fileid}:{int(utt_index):06}"
         lines = open(txt_path).readlines()
 
         lineno = 0
