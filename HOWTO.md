@@ -9,6 +9,14 @@ link would be `https://youtube.com/watch?v=AlLW83LkQ4M` and the tool like
     yt-dlp --no-simulate -f mp4 -o '/path/to/downloaded/data/%(id)s.%(ext)s' \
        'https://youtube.com/watch?v=AlLW83LkQ4M'
 
+## Extract audio from video files
+
+We need .wav file (16bit, 16kHz) for future processing for each of video file.
+Audio file can be extracted using the following command for each of vide.
+
+    ffmpeg -i /path/to/downloaded/data/zuSLzH7rPb0.mp4 -qscale:a 0 -ac 1 -vn -ar 16000 \
+        /path/to/downloaded/data/zuSLzH7rPb0.wav
+
 ## Download ASR and ASD info files
 Download [ASD info file](https://github.com/etri/kmsav/releases/download/v0.2.0/kmsav_asd_v0.2.zip)
 from repository, and unzip them. You will get `kmsav_asd_v0.2` directory.
