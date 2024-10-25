@@ -6,7 +6,9 @@ At first download video files from youtube.com using file id in
 link would be `https://youtube.com/watch?v=AlLW83LkQ4M` and the tool like
 [yt-dlp](https://github.com/yt-dlp/yt-dlp) can be used. For example,
 
-    yt-dlp --no-simulate -f mp4 -o '/path/to/downloaded/data/%(id)s.%(ext)s' \
+    yt-dlp --no-simulate -f 'bestvideo[height=1080]+bestaudio' \
+        -o '/path/to/downloaded/data/%(id)s.%(ext)s' \
+        --merge-output-format mp4 \
        'https://youtube.com/watch?v=AlLW83LkQ4M'
 
 ## Extract audio from video files
